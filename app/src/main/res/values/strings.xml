@@ -10,5 +10,14 @@
     <string name="report_description">Report Description</string>
     <string name="report_location">Location</string>
     <string name="report_image_description">Image of the report</string>
+    <string name="no_reports_available">No reports available</string>
+    <string name="add_report">Add Report</string>
+    <string name="report_title_hint">Enter Report Title</string>
+    <string name="report_description_hint">Enter Report Description</string>
+    <string name="get_location">Get Location</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="submit_report">Submit Report</string>
+    <string name="image_preview">Image Preview</string>
+
 
 </resources>

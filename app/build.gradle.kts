@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -78,6 +79,7 @@ dependencies {
     implementation(libs.material.v180)  // Ensure this is included
     implementation(libs.androidx.appcompat.v170)
     implementation(platform(libs.firebase.bom)) // Example version
+    implementation(libs.androidx.recyclerview) // Use the latest version
 
 
 }

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.google.firebase.BuildConfig
@@ -83,16 +84,27 @@ class MainActivity : AppCompatActivity() {
     private fun fetchReports() {
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                val newReportList = snapshot.children.mapNotNull { it.getValue(Report::class.java) }
+
+                val diffResult = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
+                    override fun getOldListSize() = reportList.size
+                    override fun getNewListSize() = newReportList.size
+
+                    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                        // Assuming each Report has a unique identifier
+                        return reportList[oldItemPosition].id == newReportList[newItemPosition].id
+                    }
+
+                    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                        return reportList[oldItemPosition] == newReportList[newItemPosition]
+                    }
+                })
+
                 reportList.clear()
-                if (snapshot.exists()) {
-                    // Use mapNotNull to avoid null entries
-                    reportList.addAll(snapshot.children.mapNotNull { it.getValue(Report::class.java) })
-                    Log.d("FetchReports", "Reports loaded: ${reportList.size}")
-                } else {
-                    Log.d("FetchReports", "No reports found.")
-                }
+                reportList.addAll(newReportList)
+                diffResult.dispatchUpdatesTo(adapter)
+
                 binding.tvEmptyMessage.visibility = if (reportList.isEmpty()) View.VISIBLE else View.GONE
-                adapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -101,6 +113,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
 
 
 }
