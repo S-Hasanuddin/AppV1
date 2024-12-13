@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Elysium</string>
+    <string name="enter_description">Enter Description</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="get_location">Get Location</string>
+    <string name="submit_report">Submit Report</string>
+    <string name="some_button">Some Button</string>
+    <string name="image_preview_content_description">Image Preview</string>
+    <string name="report_title">Report Title</string>
+    <string name="report_description">Report Description</string>
+    <string name="report_location">Location</string>
+    <string name="report_image_description">Image of the report</string>
+
+</resources>
