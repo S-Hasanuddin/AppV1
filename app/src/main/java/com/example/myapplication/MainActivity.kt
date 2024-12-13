@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.StrictMode
@@ -17,7 +16,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.getValue
 
 class MainActivity : AppCompatActivity() {
 
@@ -84,16 +82,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchReports() {
         database.addValueEventListener(object : ValueEventListener {
-            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 reportList.clear()
                 if (snapshot.exists()) {
-                    for (reportSnapshot in snapshot.children) {
-                        val report = reportSnapshot.getValue<Report>()
-                        if (report != null) {
-                            reportList.add(report)
-                        }
-                    }
+                    // Use mapNotNull to avoid null entries
+                    reportList.addAll(snapshot.children.mapNotNull { it.getValue(Report::class.java) })
                     Log.d("FetchReports", "Reports loaded: ${reportList.size}")
                 } else {
                     Log.d("FetchReports", "No reports found.")
@@ -108,4 +101,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
+
 }
