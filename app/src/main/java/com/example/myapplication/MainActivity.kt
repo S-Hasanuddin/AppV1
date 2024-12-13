@@ -59,11 +59,10 @@ class MainActivity : AppCompatActivity() {
         }.addOnFailureListener { e ->
             Log.e("FirebaseTest", "Error: ${e.message}")
         }
-        Log.d("RecyclerViewDebug", "Report list size: ${reportList.size}")
-        Log.d("RecyclerViewDebug", "Adapter item count: ${adapter.itemCount}")
 
         // Initialize report list and adapter
         reportList = mutableListOf()
+        database = FirebaseDatabase.getInstance().getReference("Reports")
         adapter = ReportAdapter(reportList)
 
         // Setup RecyclerView
@@ -78,6 +77,9 @@ class MainActivity : AppCompatActivity() {
             Log.d("FABClick", "Navigating to ReportSubmissionActivity")
             startActivity(Intent(this, ReportSubmissionActivity::class.java))
         }
+        Log.d("RecyclerViewDebug", "Report list size: ${reportList.size}")
+        Log.d("RecyclerViewDebug", "Adapter item count: ${adapter.itemCount}")
+
     }
 
     private fun fetchReports() {
