@@ -57,6 +57,9 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.play.services.location)
     implementation(libs.play.services.maps)
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -80,6 +83,9 @@ dependencies {
     implementation(libs.androidx.appcompat.v170)
     implementation(platform(libs.firebase.bom)) // Example version
     implementation(libs.androidx.recyclerview) // Use the latest version
+    implementation(libs.firebase.auth.ktx)
+
+
 
 
 }

@@ -16,6 +16,7 @@
             android:id="@+id/etReportTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:hint="@string/report_title_hint"
             android:inputType="text"
             android:maxLines="1" />
@@ -25,6 +26,7 @@
             android:id="@+id/etReportDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:hint="@string/report_description_hint"
             android:inputType="textMultiLine"
             android:minLines="4"
@@ -49,13 +51,6 @@
             android:visibility="gone" />
 
         <!-- Upload Image Button -->
-        <Button
-            android:id="@+id/btnUploadImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/upload_image"
-            android:textColor="@android:color/white"
-            android:backgroundTint="@android:color/holo_blue_dark"/>
 
         <!-- Submit Button -->
         <Button
@@ -66,6 +61,24 @@
         android:layout_marginTop="16dp"
         android:textColor="@android:color/white"
         android:backgroundTint="@android:color/holo_blue_dark" />
+
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/description"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            />
+
+        <Button
+            android:id="@+id/btnUploadImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/upload_image"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/holo_blue_dark" />
+
 
     </LinearLayout>
 </ScrollView>
